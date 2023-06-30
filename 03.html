@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>飲食</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    </script>
+    <script type="text/javascript">window.onscroll = function () {
+            var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+            var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+            if (scrollPos > clientHeight / 2) {
+                document.getElementById("scroll-up").classList.add("active");
+            } else {
+                document.getElementById("scroll-up").classList.remove("active");
+            }
+        }
+
+        // 當回到頂部按鈕被點擊時，滑動到頁面頂部
+        document.getElementById("scroll-up").onclick = function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }</script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchForm = document.getElementById("search-form");
+            searchForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // 防止表單提交刷新頁面
+                var keyword = document.getElementById('search-input').value.trim(); // 獲取輸入的關鍵字
+                var gallery = document.querySelectorAll(".gallery div");
+
+                // 找到與關鍵字相符的第一個 div 元素
+                var matchingItem = null;
+                for (var i = 0; i < gallery.length; i++) {
+                    var item = gallery[i];
+                    var h3 = item.querySelector("h3");
+                    if (h3.textContent.trim() === keyword) {
+                        matchingItem = item;
+                        break;
+                    }
+                }
+                if (matchingItem !== null) {
+                    // 檢查找到相符的 div 元素
+
+                    // 將相符的 div 元素與第一個 div 元素交換位置
+                    var firstItem = gallery[0];
+                    var parent = firstItem.parentNode;
+
+                    // 创建一个临时元素
+                    var temp = document.createElement('div');
+
+                    // 将相符的元素插入到临时元素的前面
+                    parent.insertBefore(temp, firstItem);
+
+                    // 将第一个元素插入到相符元素的前面
+                    parent.insertBefore(firstItem, matchingItem);
+
+                    // 将临时元素插入到第一个元素的前面，完成交换
+                    parent.insertBefore(matchingItem, temp);
+
+                    // 移除临时元素
+                    parent.removeChild(temp);
+
+                    //隱藏
+                    hideItems();
+                }
+            });
+        });
+        function hideItems() {
+            var gallery = document.querySelectorAll(".gallery div");
+            for (var i = 1; i < gallery.length; i++) {
+                gallery[i].style.display = "none";
+            }
+        }
+    </script>
+    <style>
+    
+
+    *{
+      margin: 0; /* 设置外边距为0 */
+      padding: 0; /* 设置内边距为0 */
+      box-sizing: border-box; /* 设置盒模型为border-box */
+      text-decoration: none; /* 去除文本装饰 */
+      transition: 0.4s all linear; /* 设置过渡效果 */
+      font-size: 25px; /* 设置字体大小为30像素 */
+      }
+      .carousel-item img {
+       height: 100%; /* 設置圖片的高度為100% */
+       object-fit: cover; /* 設置圖片的填充方式為cover */
+       display:block; /* 設置圖片為block元素 */
+       margin: 0 auto; /* 設置圖片的水平居中 */
+      }
+      @keyframes shake {
+        0% { transform: translateX(0); } /* 起始位置，不進行位移 */
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); } /* 在 10%, 30%, 50%, 70%, 90% 的時間點，向左移動 5 像素 */
+        20%, 40%, 60%, 80% { transform: translateX(2px); } /* 在 20%, 40%, 60%, 80% 的時間點，向右移動 5 像素 */
+        100% { transform: translateX(0); } /* 結束位置，回到原始位置 */
+      }
+    .nav-link:hover {
+      font-size: 25px; /* 设置字体大小为22像素 */
+      font-weight: 500 ; /* 设置字体粗细为500 */
+      margin-left: 10px; /* 设置左侧外边距为10像素 */
+      transition: 1s; /* 设置过渡效果持续时间为1秒 */
+      background-color: rgb(50, 168, 223); /* 设置背景颜色为深红色 */
+      padding: 15px 10px 15px 10px; /* 设置内边距为上下各20像素，左右各10像素 */
+      animation: shake 0.5s;/* 當滑鼠移動到字體時應用震動動畫 */
+      }
+      .navbar-nav .nav-link:hover {
+      color: #85117b!important; /* 滑鼠滑到後4個字體的顏色 */
+    }
+    p {
+      font-size: 20px;
+    }
+    .navbar-light.bg-light {
+       background-color: rgba(6, 81, 131, 0.993) !important;/* 工具列的背景顏色  */
+       box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5)!important;
+      }
+      .navbar-brand {
+      font-size: 45px; /* 設置字體大小為30像素 */
+      color:rgb(145, 144, 144) !important; /* 設置字體顏色為深黃色 */
+      }
+      .navbar-nav .nav-link {
+      color: #ccb115 !important; /* 原本4個小標題的顏色 */
+    }
+    
+    .navbar {
+      max-width: 1850px; /* 設置工具列的最大寬度為1200像素 */
+      margin: 0 auto; /* 設置工具列水平居中 */
+    }
+    .credit {
+      color: rgb(2, 45, 48); /* 更改顏色為紅色 */
+      font-size: 40px; /* 更改字體大小為32px */
+      font-weight: normal;
+    }
+    .footer {
+      background-color: #3275c2;
+      text-align: center;
+      height: 125px;
+    }
+    .footer .social{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+    #scroll-up{
+    /* 按鈕的位置是固定的 */
+    position: fixed;
+    /* 初始狀態下，按鈕位於頁面的上方，隱藏起來 */
+    top: -120%;
+    /* 按鈕位於頁面的右下角 */
+    right: 20px;
+    /* 按鈕的內邊距 */
+    padding: 10px;
+    /* 按鈕的字體大小 */
+    font-size: 25px;
+    /* 按鈕的背景顏色 */
+    background: #ccb115;
+    /* 按鈕的文字顏色 */
+    color: #ffffff;
+    /* 按鈕的邊框半徑 */
+    border-radius: 10%;
+    /* 按鈕的透明度 */
+    opacity: 0.8;
+    /* 按鈕滑動的過渡效果 */
+    transition: 1s linear;
+}
+
+/* 當按鈕被激活時，顯示出來 */
+#scroll-up.active{
+    /* 按鈕從頁面底部滑動到距離頁面頂部80%的位置 */
+    top: 80%;
+}
+
+
+        @media screen and (min-width: 768px) {
+            #star {
+                font-size: 80px;
+            }
+        }
+        .location {
+            color: rgb(22, 223, 223);
+            font-size: 50px;
+            text-align: center !important;
+        }
+        
+        .gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 50px; /* 設置左右外邊距為50像素 */
+}
+
+@media (min-width: 600px) {
+  .gallery {
+    margin: 0 auto; /* 在螢幕寬度大於600像素時，將外邊距設置為自動居中 */
+    max-width: 1000px; /* 設置最大寬度為1200像素 */
+  }
+}
+
+.item {
+    margin: 10px;
+    padding: 10px;
+    background: linear-gradient(320deg,#eecb6b,#b485e0,#68afd3);
+    text-align: center;
+    width: 200px; 
+    height: 220px;
+}
+
+.item img {
+    display: block;
+    margin: 0 auto;
+}
+
+.item h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.gallery a {
+    color: inherit;
+    text-decoration: none;
+}
+.search {
+  border: 10px solid #ffffff; /* 設置邊框寬度和顏色 */
+  background: linear-gradient(320deg,#ffbb00,#994ae4,#08acf8); /* 設置背景顏色 */
+  padding: 15px; /* 設置內邊距 */
+  width: 1580px; /* 設置寬度 */
+  text-align: center;  
+  margin: 0 auto; /* 將元素水平置中 */
+  border-radius: 35px; /* 設置四個角的圓弧半徑 */
+}
+.gallery .item:hover {
+transform: scale(1.1);
+box-shadow: 0 0 10px rgb(35, 4, 77);
+}
+.gallery .item {
+transition: transform 0.3s ease-in-out;
+}
+@media (max-width: 768px) {
+  /* 將搜尋框的寬度設為100% */
+  .search {
+    width: 100%;
+  }
+  /* 將搜尋框的寬度設為80%，並在右側留出10px的間距 */
+  #search-input {
+    width: 30%;
+    margin-right: 10px;
+  }
+  /* 將搜尋按鈕的寬度設為15% */
+  button[type="submit"] {
+    width: 15%;
+  }
+}
+  </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="01.html">麗寶OUTLET MALL</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="02.html">購物</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="03.html">飲食</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="04.html">遊玩</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="05.html">電影</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <br>
+      
+      <div class="search">
+        <form id="search-form">
+            <input type="text" placeholder="輸入關鍵字" id="search-input" style="width: 80%;">
+            <button type="submit">搜尋</button>
+        </form>
+    </div>
+
+      <div class="gallery">
+        <div class="item">
+            <a href="14.html">
+                <img src="https://drive.google.com/uc?export=view&id=1gWKT189sp9R8KtB-z0H-QoKNwtboMUwf" alt="麥秋手做甜品"style="width: 150px; height: 150px;">
+                <h3>麥秋手做甜品</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="pocky.html">
+                <img src="https://drive.google.com/uc?export=view&id=1U1NXcV-rfbvcrdkkkULX7kIC9Nxxp_pH" alt="pocky"style="width: 150px; height: 150px;">
+                <h3>pocky</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="15.html">
+                <img src="https://drive.google.com/uc?export=view&id=1lLN0TU8jBFnXOOgU-QM0EoAKKa-mMv9t" alt="田田茶鋪"style="width: 150px; height: 150px;">
+                <h3>田田茶鋪</h3>
+              </a>
+            </div>
+            <div class="item">  
+              <a href="Melons.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1iMNztfcV73cgb44b9m91qbKo7cVs43LF" alt="Melons メロンパン達"style="width: 150px; height: 150px;">
+                  <h3>Melons メロンパン達</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="16.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1TlScIxR6bEwnsZe0kqHVVvAvI2i_9kfu" alt="Starbucks 星巴克 台中麗寶門市"style="width: 150px; height: 150px;">
+                  <h3>Starbucks 星巴克 台中麗寶門市</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="17.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1fHawkEkHZRK1AzB_7bpA_skEueT1w-Ve" alt="Mister Donut"style="width: 150px; height: 150px;">
+                  <h3>Mister Donut</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="18.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1MuWQy-Fthbz4o8k1F6PikmVa0HcMLC3K" alt="Starbucks 星巴克 麗寶鐘樓門市"style="width: 150px; height: 150px;">
+                  <h3>Starbucks 星巴克 麗寶鐘樓門市</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="19.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1mTvtB7-zhJSwV1adJhQSd5UCwiCQFw3m" alt="50嵐"style="width: 150px; height: 150px;">
+                  <h3>50嵐</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="20.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1ZZfjsoM-wXlSKdLvYwL4PMojAIxemoLJ" alt="日日裝茶"style="width: 150px; height: 150px;">
+                  <h3>日日裝茶</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="21.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1g4hFJ9Ezpqe3Uhk90_3CSU2vQRqB1fg5" alt="米塔炙燒牛排"style="width: 150px; height: 150px;">
+                  <h3>米塔炙燒牛排</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="22.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1cvXN71DOMAegN12PWUCJymOc-wLqAFgP" alt="涓豆腐"style="width: 150px; height: 150px;">
+                  <h3>涓豆腐</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="23.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1O6THS5OHMszawh1xNGaPn3dZa-i2NRzE" alt="時時香SHANN RICE BAR"style="width: 150px; height: 150px;">
+                  <h3>時時香SHANN RICE BAR</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="24.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1XiTRQ0Ja2SwYf8oWnz6vfhm5cYszdj41" alt="這一小鍋"style="width: 150px; height: 150px;">
+                  <h3>這一小鍋</h3>
+              </a>
+          </div>
+          <div class="item">
+            <a href="25.html">
+                <img src="https://drive.google.com/uc?export=view&id=1Zynlf0d_77MGEzVaedy3s_nNgoV91EIR" alt="添好運"style="width: 150px; height: 150px;">
+                <h3>添好運</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="26.html">
+                <img src="https://drive.google.com/uc?export=view&id=1jy3ABa8ujobgHby9O9kdnnHGZrAYw1O-" alt="燒肉同話"style="width: 150px; height: 150px;">
+                <h3>燒肉同話</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="27.html">
+                <img src="https://drive.google.com/uc?export=view&id=1eaX8acgPASDgmH-9SFaQjbDV9zm_SNJI" alt="莫凡彼"style="width: 150px; height: 150px;">
+                <h3>莫凡彼</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="28.html">
+                <img src="https://drive.google.com/uc?export=view&id=1AG4D-pokFvgg8Cmbcqfh9QZKhG0pXOa9" alt="瓦城"style="width: 150px; height: 150px;">
+                <h3>瓦城</h3>
+              </a>
+            </div>
+            <div class="item">  
+              <a href="29.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1MmjRHruPGhNfoiqUrcl7yAP7VDj-EsoJ" alt="星野肉肉鍋"style="width: 150px; height: 150px;">
+                  <h3>星野肉肉鍋</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="30.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1NdKXYuQoaRE9mdmuC2YgUdYdPtW8EAuY" alt="新這一鍋"style="width: 150px; height: 150px;">
+                  <h3>新這一鍋</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="31.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1rvbzhR3gW6H0KUuuBc-Hrpj-He3ftOU5" alt="明月館"style="width: 150px; height: 150px;">
+                  <h3>明月館</h3>
+              </a>
+          </div>
+          <div class="item">
+            <a href="32.html">
+                <img src="https://drive.google.com/uc?export=view&id=1-8I5lh22ikuhKg3KafVfiO0KXk-9fjS9" alt="港點大師"style="width: 150px; height: 150px;">
+                <h3>港點大師</h3>
+            </a>
+        </div>
+          <div class="item">
+              <a href="33.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1mw8k-6qO_wHyceCZ3liwOnURtlKQCMEb" alt="小紅花鐵板燒"style="width: 150px; height: 150px;">
+                  <h3>小紅花鐵板燒</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="34.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1IOfkeTLpGGBwNnEOEoOA7QCsmji64gTY" alt="HAMASUSHI"style="width: 150px; height: 150px;">
+                  <h3>HAMASUSHI</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="35.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1IE7laEI1Tc11L-uhK8J42VfN6lXQ4ZCN" alt="十二月粥品"style="width: 150px; height: 150px;">
+                  <h3>十二月粥品</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="36.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1BEtwac2FUbEGmzCIbYhC10jNXcY5jABP" alt="泰享家"style="width: 150px; height: 150px;">
+                  <h3>泰享家</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="37.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1tjcV7lvAntnr-xwFhC_-uhBZ4Eu_FQHa" alt="喵掌櫃"style="width: 150px; height: 150px;">
+                  <h3>喵掌櫃</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="38.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1OfbVM2PH0WaUU--t8sISvlVcFe0BRHoR" alt="繼光香香雞"style="width: 150px; height: 150px;">
+                  <h3>繼光香香雞</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="39.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1WrNqDU6tuzV_6nvqSS4Ve7Br9FIvXSXW" alt="周氏蝦捲"style="width: 150px; height: 150px;">
+                  <h3>周氏蝦捲</h3>
+              </a>
+          </div>
+          <div class="item">
+            <a href="40.html">
+                <img src="https://drive.google.com/uc?export=view&id=1F4S9i1COgZ-sgO06CKdljCi0rqLNOiDf" alt="慢慢來"style="width: 150px; height: 150px;">
+                <h3>慢慢來</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="41.html">
+                <img src="https://drive.google.com/uc?export=view&id=1A6G9BKDH8qybyI3Q_NvOikb-mOOl_YDg" alt="聚味小火鍋"style="width: 150px; height: 150px;">
+                <h3>聚味小火鍋</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="42.html">
+                <img src="https://drive.google.com/uc?export=view&id=13FCANRimM81x5DZ1vVvYAPXg6qWqjaEE" alt="OEC木桶燒"style="width: 150px; height: 150px;">
+                <h3>OEC木桶燒</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="43.html">
+                <img src="https://drive.google.com/uc?export=view&id=1Bq_UpwNGcWuWfNB3A6BWuod2sJIOPbWB" alt="韓姜熙的小廚房"style="width: 150px; height: 150px;">
+                <h3>韓姜熙的小廚房</h3>
+              </a>
+            </div>
+            <div class="item">  
+              <a href="44.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1eHwG3X-WuI4KOtV6YgDSIIe9vWNB0BL6" alt="月令12"style="width: 150px; height: 150px;">
+                  <h3>月令12</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="45.html">
+                  <img src="https://drive.google.com/uc?export=view&id=18c_BTHnX9sJRADORka8yXOEW7sIZymFB" alt="丸亀製麵"style="width: 150px; height: 150px;">
+                  <h3>丸亀製麵</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="46.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1BLBh2ZvBC3z2D4AegJFQqXLu7dUdv3pm" alt="雲象泰式料理"style="width: 150px; height: 150px;">
+                  <h3>雲象泰式料理</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="47.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1vKROPtAAT2kPvGnN_9I0ibk99RxHINhH" alt="大心 新泰式麵食"style="width: 150px; height: 150px;">
+                  <h3>大心 新泰式麵食</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="48.html">
+                  <img src="https://drive.google.com/uc?export=view&id=17TjkVm4-Jy1F8XA2YRNMwKpndA0FBN7B" alt="翰林"style="width: 150px; height: 150px;">
+                  <h3>翰林</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="49.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1y_zT2JkwI_PytqhxqbyKBMTxFC9sRvKM" alt="頂呱呱"style="width: 150px; height: 150px;">
+                  <h3>頂呱呱</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="50.html">
+                  <img src="https://drive.google.com/uc?export=view&id=15sbdRh5-GChejBhvHSnZk8B9qsmyl59U" alt="次郎長拉麵"style="width: 150px; height: 150px;">
+                  <h3>次郎長拉麵</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="51.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1fbWbedf41MX7sTBgT5N8vcPnWfwHMdgu" alt="佐藤食堂"style="width: 150px; height: 150px;">
+                  <h3>佐藤食堂</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="52.html">
+                  <img src="https://drive.google.com/uc?export=view&id=14hAROYUs_sTt3eey4xSJcF51c5H3uLpZ" alt="朝鮮饌"style="width: 150px; height: 150px;">
+                  <h3>朝鮮饌</h3>
+              </a>
+          </div>
+          <div class="item">
+              <a href="53.html">
+                  <img src="https://drive.google.com/uc?export=view&id=1vjo6LsMQgdZHSRzbUW0nK3WSvhvAUnuW" alt="梧棲小鎮鹹蛋糕"style="width: 150px; height: 150px;">
+                  <h3>梧棲小鎮鹹蛋糕</h3>
+              </a>
+          </div>
+          <div class="item">
+            <a href="54.html">
+                <img src="https://drive.google.com/uc?export=view&id=1tshouRzH5u97kRMg7xNkOKOa81TTeZA-" alt="牧上麵包"style="width: 150px; height: 150px;">
+                <h3>牧上麵包</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="55.html">
+                <img src="https://drive.google.com/uc?export=view&id=15UeIoYRD7L5woimro14BfAPoq-hdfB5t" alt="桀壽司"style="width: 150px; height: 150px;">
+                <h3>桀壽司</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="56.html">
+                <img src="https://drive.google.com/uc?export=view&id=17pg_JNUzjv7NYntJLTQEbO4xtvJpqsly" alt="翰林鍋物"style="width: 150px; height: 150px;">
+                <h3>翰林鍋物</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="57.html">
+                <img src="https://drive.google.com/uc?export=view&id=1SKZKwYfZa0dyExAoisrCYZ5toKv7uOxM" alt="札幌 炎神"style="width: 150px; height: 150px;">
+                <h3>札幌 炎神</h3>
+              </a>
+            </div>
+        </div>
+      <section class="footer" id="footer">
+        <div class="social">
+            <a href="https://www.facebook.com/profile.php?id=100013497074976"><i class="fab fa-facebook-square"
+                    style="color: rgb(24, 24, 209);font-size: 40px;"></i></a>
+            <a href="https://instagram.com/ye_wei_1128?igshid=MjEwN2IyYWYwYw==/"><i class="fab fa-instagram-square"
+                    style="color: rgb(212, 65, 193);font-size: 40px;"></i></a>
+            <a href="https://line.me/ti/p/6lH8yAFbAB"><i class="fab fa-line"
+                    style="color: rgb(55, 194, 37);font-size: 40px;"></i></a>
+            <a href="#" class="fas fa-angle-up" id="scroll-up"></a>
+        </div>
+        <p></p>
+        <p></p>
+        <h1 class="credit">我家附近有麗寶OUTLET</h1>
+    </section>
+</body>
+</html>
+

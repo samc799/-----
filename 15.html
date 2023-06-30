@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>田田茶鋪 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+</script>
+<script type="text/javascript">window.onscroll = function() {
+  var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+  var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+  var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+  if (scrollPos > clientHeight / 2) {
+  document.getElementById("scroll-up").classList.add("active");
+  } else {
+  document.getElementById("scroll-up").classList.remove("active");
+  }
+  }
+  
+  // 當回到頂部按鈕被點擊時，滑動到頁面頂部
+  document.getElementById("scroll-up").onclick = function() {
+  window.scrollTo({
+  top: 0,
+  behavior: "smooth"
+  });
+  }</script>
+  <style>
+    *{
+      margin: 0; /* 设置外边距为0 */
+      padding: 0; /* 设置内边距为0 */
+      box-sizing: border-box; /* 设置盒模型为border-box */
+      text-decoration: none; /* 去除文本装饰 */
+      transition: 0.4s all linear; /* 设置过渡效果 */
+      font-size: 25px; /* 设置字体大小为30像素 */
+      }
+      .carousel-item img {
+       height: 100%; /* 設置圖片的高度為100% */
+       object-fit: cover; /* 設置圖片的填充方式為cover */
+       display:block; /* 設置圖片為block元素 */
+       margin: 0 auto; /* 設置圖片的水平居中 */
+      }
+      @keyframes shake {
+        0% { transform: translateX(0); } /* 起始位置，不進行位移 */
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); } /* 在 10%, 30%, 50%, 70%, 90% 的時間點，向左移動 5 像素 */
+        20%, 40%, 60%, 80% { transform: translateX(2px); } /* 在 20%, 40%, 60%, 80% 的時間點，向右移動 5 像素 */
+        100% { transform: translateX(0); } /* 結束位置，回到原始位置 */
+      }
+    .nav-link:hover {
+      font-size: 25px; /* 设置字体大小为22像素 */
+      font-weight: 500 ; /* 设置字体粗细为500 */
+      margin-left: 10px; /* 设置左侧外边距为10像素 */
+      transition: 1s; /* 设置过渡效果持续时间为1秒 */
+      background-color: rgb(50, 168, 223); /* 设置背景颜色为深红色 */
+      padding: 15px 10px 15px 10px; /* 设置内边距为上下各20像素，左右各10像素 */
+      animation: shake 0.5s;/* 當滑鼠移動到字體時應用震動動畫 */
+      }
+      .navbar-nav .nav-link:hover {
+      color: #85117b!important; /* 滑鼠滑到後4個字體的顏色 */
+    }
+    p {
+      font-size: 20px;
+    }
+    .navbar-light.bg-light {
+       background-color: rgba(6, 81, 131, 0.993) !important;/* 工具列的背景顏色  */
+       box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5)!important;
+      }
+      .navbar-brand {
+      font-size: 45px; /* 設置字體大小為30像素 */
+      color:rgb(145, 144, 144) !important; /* 設置字體顏色為深黃色 */
+      }
+      .navbar-nav .nav-link {
+      color: #ccb115 !important; /* 原本4個小標題的顏色 */
+    }
+    
+    .navbar {
+      max-width: 1850px; /* 設置工具列的最大寬度為1200像素 */
+      margin: 0 auto; /* 設置工具列水平居中 */
+    }
+    .credit {
+      color: rgb(2, 45, 48); /* 更改顏色為紅色 */
+      font-size: 40px; /* 更改字體大小為32px */
+      font-weight: normal;
+    }
+    .footer {
+      background-color: #3275c2;
+      text-align: center;
+      height: 125px;
+    }
+    .footer .social{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+    #scroll-up{
+    /* 按鈕的位置是固定的 */
+    position: fixed;
+    /* 初始狀態下，按鈕位於頁面的上方，隱藏起來 */
+    top: -120%;
+    /* 按鈕位於頁面的右下角 */
+    right: 20px;
+    /* 按鈕的內邊距 */
+    padding: 10px;
+    /* 按鈕的字體大小 */
+    font-size: 25px;
+    /* 按鈕的背景顏色 */
+    background: #ccb115;
+    /* 按鈕的文字顏色 */
+    color: #ffffff;
+    /* 按鈕的邊框半徑 */
+    border-radius: 10%;
+    /* 按鈕的透明度 */
+    opacity: 0.8;
+    /* 按鈕滑動的過渡效果 */
+    transition: 1s linear;
+}
+
+/* 當按鈕被激活時，顯示出來 */
+#scroll-up.active{
+    /* 按鈕從頁面底部滑動到距離頁面頂部80%的位置 */
+    top: 80%;
+}
+
+
+.container {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+
+        .map {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #star {
+            position: absolute;
+            top: 71%;
+            left: 42%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            color: rgb(255, 238, 0);
+            font-size: 30px !important;
+        }
+
+        @media screen and (min-width: 600px) {
+            #star {
+                font-size: 70px!important;
+            }
+        }
+        .location {
+            color: rgb(13, 192, 192);
+            font-size: 50px;
+            text-align: center !important;
+        }
+        
+  </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="01.html">麗寶OUTLET MALL</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="02.html">購物</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="03.html">飲食</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="04.html">遊玩</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="05.html">電影</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <p></p>
+      <div class="container">
+        <br>
+        <div class="container-fluid">
+          <div class="row">
+            <div style="text-align: center;">
+              <img src="https://drive.google.com/uc?export=view&id=12Jj19cOvw-z9NnNHcln0PtaaLgpdsJLW" alt="田田茶鋪" style="width: 100%; height: auto;">
+              <p></p>
+             <img src="https://drive.google.com/uc?export=view&id=1lLN0TU8jBFnXOOgU-QM0EoAKKa-mMv9t" alt="田田茶鋪2" style="width: 30%; height: auto; position: relative; top: -80px; left: 0px; box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.3);">
+            </div>
+          </div>
+          </div>
+          <p></p>
+        <div style="display: flex; align-items: center;">
+          <div style="width: 250px; height: 5px; background-color:rgb(223, 143, 22);"></div>
+          <div style="margin-left: 20px;">
+            <p style="font-size: 30px; color: rgb(223, 143, 22);">品牌介紹</p>
+            <p style="font-size: 25px; color: rgb(223, 143, 22);">brand introduction</p>
+          </div>
+          <div style="margin-left: 20px; width: 300px; height: 5px; background-color: rgb(223, 143, 22);"></div>
+        </div>
+        <p style="font-size: 35px; color: rgb(2, 0, 128);">田田茶鋪</p>
+        <p>在田田茶舖，我們希望能為大家帶來種類多樣、價格合理並且安心飲品與食材，且讓台灣消費者可以支持台灣在地小農的產品。 </p> 
+        <br>
+        <p>爲了實現這樣的想法，我們從產品設計、原料採購、生產製造，到店中的經營，都不斷在創新和尋求改善。 </p>
+         <br>
+        <p>起步至今，從未改變的初衷，保持食物的原貌，力求實踐食品安全給消費者多元的享受。</p>
+          <br>
+        <p> 田田小農車輪餅，採用臺灣的紅豆，採自然乾燥或人工採收曝曬，堅持不使用落葉劑，友善土地與生態。</p>
+           <br>
+        <p> 透過車輪餅的健康餡料，將小農辛苦耕種的食材，透過車輪餅分享給大家。</p> 
+        <br>
+        <div style="display: flex; align-items: center;">
+          <div style="width: 300px; height: 5px; background-color:rgb(223, 143, 22);"></div>
+          <div style="margin-left: 20px;">
+            <p style="font-size: 30px; color: rgb(223, 143, 22);">專櫃位置</p>
+            <p style="font-size: 25px; color: rgb(223, 143, 22);">Counter Location</p>
+          </div>
+          <div style="margin-left: 20px; width: 550px; height: 5px; background-color: rgb(223, 143, 22);"></div>
+        </div>
+        <p></p>
+        <span class="location">1F / B區 / 1222-b </span>
+      <p></p>
+      </div>
+      <div class="container">
+        <img src="https://drive.google.com/uc?export=view&id=16ouXLmHqysOayx6QElj0fybd4qao4x1A" alt="地圖" class="map">
+        <i class="fas fa-star" id="star"></i>
+    </div>
+    <p></p>
+      <section class="footer" id="footer">
+        <div class="social">
+            <a href="https://www.facebook.com/profile.php?id=100013497074976"><i class="fab fa-facebook-square"
+                    style="color: rgb(24, 24, 209);font-size: 40px;"></i></a>
+            <a href="https://instagram.com/ye_wei_1128?igshid=MjEwN2IyYWYwYw==/"><i class="fab fa-instagram-square"
+                    style="color: rgb(212, 65, 193);font-size: 40px;"></i></a>
+            <a href="https://line.me/ti/p/6lH8yAFbAB"><i class="fab fa-line"
+                    style="color: rgb(55, 194, 37);font-size: 40px;"></i></a>
+            <a href="#" class="fas fa-angle-up" id="scroll-up"></a>
+        </div>
+        <p></p>
+        <h1 class="credit">我家附近有麗寶OUTLET </h1>
+    </section>
+</body>
+</html>
+

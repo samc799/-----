@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jack Nicklaus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+</script>
+<script type="text/javascript">window.onscroll = function() {
+  var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+  var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+  var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+  if (scrollPos > clientHeight / 2) {
+  document.getElementById("scroll-up").classList.add("active");
+  } else {
+  document.getElementById("scroll-up").classList.remove("active");
+  }
+  }
+  
+  // 當回到頂部按鈕被點擊時，滑動到頁面頂部
+  document.getElementById("scroll-up").onclick = function() {
+  window.scrollTo({
+  top: 0,
+  behavior: "smooth"
+  });
+  }</script>
+  <style>
+    *{
+      margin: 0; /* 设置外边距为0 */
+      padding: 0; /* 设置内边距为0 */
+      box-sizing: border-box; /* 设置盒模型为border-box */
+      text-decoration: none; /* 去除文本装饰 */
+      transition: 0.4s all linear; /* 设置过渡效果 */
+      font-size: 25px; /* 设置字体大小为30像素 */
+      }
+      .carousel-item img {
+       height: 100%; /* 設置圖片的高度為100% */
+       object-fit: cover; /* 設置圖片的填充方式為cover */
+       display:block; /* 設置圖片為block元素 */
+       margin: 0 auto; /* 設置圖片的水平居中 */
+      }
+      @keyframes shake {
+        0% { transform: translateX(0); } /* 起始位置，不進行位移 */
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); } /* 在 10%, 30%, 50%, 70%, 90% 的時間點，向左移動 5 像素 */
+        20%, 40%, 60%, 80% { transform: translateX(2px); } /* 在 20%, 40%, 60%, 80% 的時間點，向右移動 5 像素 */
+        100% { transform: translateX(0); } /* 結束位置，回到原始位置 */
+      }
+    .nav-link:hover {
+      font-size: 25px; /* 设置字体大小为22像素 */
+      font-weight: 500 ; /* 设置字体粗细为500 */
+      margin-left: 10px; /* 设置左侧外边距为10像素 */
+      transition: 1s; /* 设置过渡效果持续时间为1秒 */
+      background-color: rgb(50, 168, 223); /* 设置背景颜色为深红色 */
+      padding: 15px 10px 15px 10px; /* 设置内边距为上下各20像素，左右各10像素 */
+      animation: shake 0.5s;/* 當滑鼠移動到字體時應用震動動畫 */
+      }
+      .navbar-nav .nav-link:hover {
+      color: #85117b!important; /* 滑鼠滑到後4個字體的顏色 */
+    }
+    p {
+      font-size: 20px;
+    }
+    .navbar-light.bg-light {
+       background-color: rgba(6, 81, 131, 0.993) !important;/* 工具列的背景顏色  */
+       box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5)!important;
+      }
+      .navbar-brand {
+      font-size: 45px; /* 設置字體大小為30像素 */
+      color:rgb(145, 144, 144) !important; /* 設置字體顏色為深黃色 */
+      }
+      .navbar-nav .nav-link {
+      color: #ccb115 !important; /* 原本4個小標題的顏色 */
+    }
+    
+    .navbar {
+      max-width: 1850px; /* 設置工具列的最大寬度為1200像素 */
+      margin: 0 auto; /* 設置工具列水平居中 */
+    }
+    .credit {
+      color: rgb(2, 45, 48); /* 更改顏色為紅色 */
+      font-size: 40px; /* 更改字體大小為32px */
+      font-weight: normal;
+    }
+    .footer {
+      background-color: #3275c2;
+      text-align: center;
+      height: 125px;
+    }
+    .footer .social{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+    #scroll-up{
+    /* 按鈕的位置是固定的 */
+    position: fixed;
+    /* 初始狀態下，按鈕位於頁面的上方，隱藏起來 */
+    top: -120%;
+    /* 按鈕位於頁面的右下角 */
+    right: 20px;
+    /* 按鈕的內邊距 */
+    padding: 10px;
+    /* 按鈕的字體大小 */
+    font-size: 25px;
+    /* 按鈕的背景顏色 */
+    background: #ccb115;
+    /* 按鈕的文字顏色 */
+    color: #ffffff;
+    /* 按鈕的邊框半徑 */
+    border-radius: 10%;
+    /* 按鈕的透明度 */
+    opacity: 0.8;
+    /* 按鈕滑動的過渡效果 */
+    transition: 1s linear;
+}
+
+/* 當按鈕被激活時，顯示出來 */
+#scroll-up.active{
+    /* 按鈕從頁面底部滑動到距離頁面頂部80%的位置 */
+    top: 80%;
+}
+
+
+.container {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+
+        .map {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #star {
+            position: absolute;
+            top: 15%;
+            left: 81%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            color: rgb(255, 238, 0);
+            font-size: 30px !important;
+        }
+
+        @media screen and (min-width: 600px) {
+            #star {
+                font-size: 100px!important;
+            }
+        }
+        .location {
+            color: rgb(22, 223, 223);
+            font-size: 50px;
+            text-align: center !important;
+        }
+        
+  </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="01.html">麗寶OUTLET MALL</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="02.html">購物</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="03.html">飲食</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="04.html">遊玩</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="05.html">電影</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <p></p>
+      <div class="container">
+        <br>
+        <div class="container-fluid">
+          <div class="row">
+            <div style="text-align: center;">
+              <img src="https://drive.google.com/uc?export=view&id=1L6zQrJhfjHLFSSzaMp_A4YJbyzYTKMFT" alt="Jack Nicklaus" style="width: 100%; height: auto;">
+              <p></p>
+             <img src="https://drive.google.com/uc?export=view&id=1rnJAyICFAqwh2vBCFLwI00Oom0iRPfKS" alt="Jack Nicklaus2"style="width: 25%; height: auto; position: relative; top: -80px; left: 0px; box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.3);">
+            </div>
+            </div>
+          </div>
+          <p></p>
+          <div style="display: flex; align-items: center;">
+            <div style="width: 250px; height: 5px; background-color:rgb(223, 143, 22);"></div>
+            <div style="margin-left: 20px;">
+              <p style="font-size: 30px; color: rgb(223, 143, 22);">品牌介紹</p>
+              <p style="font-size: 25px; color: rgb(223, 143, 22);">brand introduction</p>
+            </div>
+            <div style="margin-left: 20px; width: 300px; height: 5px; background-color: rgb(223, 143, 22);"></div>
+          </div>
+          <p style="font-size: 35px; color: rgb(2, 0, 128);">Jack Nicklaus</p>
+          <br>
+        <p>傑克。尼克勞斯 是20世紀最偉大的運動球員，素有「黃金熊」（Golden Bear）</p>
+          <br>
+           <p> 稱號，也是一位充滿高度耐力和智慧的球王，他的高爾夫職業生涯中共贏得上百次職業賽事的勝利，和18次重要四大賽冠軍。連老虎伍茲至今仍未能突破他的冠軍紀錄。球技高超的他，同時也是一位出色的球場設計師，2008年由宏金熊國際股份有限公司取得台灣總代理，跨入國內高爾夫休閒品牌，以迎接用動與休閒的新概念，全力打造一個全新的高爾夫時尚運動系列。</p>
+            <br>
+           <p> Jack Nicklaus is one of the greatest athletes of the 20th century. Nicknamed”the Golden Bear”, the records of his conquests on the golf course, consisting of hundreds of wins and 18 tournament champions, have yet to be defeated even by the likes of Tiger Woods. He is also a designer of golf courses. In 2008,Hung Chin Hsiung International co., Ltd was chosen as the Taiwanese representative for the brand, and had stepped onto the market for recreational golf fashion apparel. Our company hopes to create new of golf fashion sport collections in anticipation of the new concept of sports and recreation.</p>
+           <br>
+           <div style="display: flex; align-items: center;">
+            <div style="width: 300px; height: 5px; background-color:rgb(223, 143, 22);"></div>
+            <div style="margin-left: 20px;">
+              <p style="font-size: 30px; color: rgb(223, 143, 22);">專櫃位置</p>
+              <p style="font-size: 25px; color: rgb(223, 143, 22);">Counter Location</p>
+            </div>
+            <div style="margin-left: 20px; width: 550px; height: 5px; background-color: rgb(223, 143, 22);"></div>
+          </div>
+          <p></p>
+           <span class="location">2F / A區 / 2103</span>
+      <p></p>
+      </div>
+      <div class="container">
+        <img src="https://drive.google.com/uc?export=view&id=1e1JBK9lrAl_pW9X-OarbuA7X5mEPiyav" alt="地圖" class="map">
+        <i class="fas fa-star" id="star"></i>
+    </div>
+    <p></p>
+      <section class="footer" id="footer">
+        <div class="social">
+          <a href="https://www.facebook.com/profile.php?id=100013497074976"><i class="fab fa-facebook-square"
+                  style="color: rgb(24, 24, 209);font-size: 40px;"></i></a>
+          <a href="https://instagram.com/ye_wei_1128?igshid=MjEwN2IyYWYwYw==/"><i class="fab fa-instagram-square"
+                  style="color: rgb(212, 65, 193);font-size: 40px;"></i></a>
+          <a href="https://line.me/ti/p/6lH8yAFbAB"><i class="fab fa-line"
+                  style="color: rgb(55, 194, 37);font-size: 40px;"></i></a>
+          <a href="#" class="fas fa-angle-up" id="scroll-up"></a>
+      </div>
+        <p></p>
+        <h1 class="credit">我家附近有麗寶OUTLET</h1>
+    </section>
+</body>
+</html>
+

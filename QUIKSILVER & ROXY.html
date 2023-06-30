@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QUIKSILVER & ROXY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+</script>
+<script type="text/javascript">window.onscroll = function() {
+  var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+  var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+  var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+  if (scrollPos > clientHeight / 2) {
+  document.getElementById("scroll-up").classList.add("active");
+  } else {
+  document.getElementById("scroll-up").classList.remove("active");
+  }
+  }
+  
+  // 當回到頂部按鈕被點擊時，滑動到頁面頂部
+  document.getElementById("scroll-up").onclick = function() {
+  window.scrollTo({
+  top: 0,
+  behavior: "smooth"
+  });
+  }</script>
+  <style>
+    *{
+      margin: 0; /* 设置外边距为0 */
+      padding: 0; /* 设置内边距为0 */
+      box-sizing: border-box; /* 设置盒模型为border-box */
+      text-decoration: none; /* 去除文本装饰 */
+      transition: 0.4s all linear; /* 设置过渡效果 */
+      font-size: 25px; /* 设置字体大小为30像素 */
+      }
+      .carousel-item img {
+       height: 100%; /* 設置圖片的高度為100% */
+       object-fit: cover; /* 設置圖片的填充方式為cover */
+       display:block; /* 設置圖片為block元素 */
+       margin: 0 auto; /* 設置圖片的水平居中 */
+      }
+      @keyframes shake {
+        0% { transform: translateX(0); } /* 起始位置，不進行位移 */
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); } /* 在 10%, 30%, 50%, 70%, 90% 的時間點，向左移動 5 像素 */
+        20%, 40%, 60%, 80% { transform: translateX(2px); } /* 在 20%, 40%, 60%, 80% 的時間點，向右移動 5 像素 */
+        100% { transform: translateX(0); } /* 結束位置，回到原始位置 */
+      }
+    .nav-link:hover {
+      font-size: 25px; /* 设置字体大小为22像素 */
+      font-weight: 500 ; /* 设置字体粗细为500 */
+      margin-left: 10px; /* 设置左侧外边距为10像素 */
+      transition: 1s; /* 设置过渡效果持续时间为1秒 */
+      background-color: rgb(50, 168, 223); /* 设置背景颜色为深红色 */
+      padding: 15px 10px 15px 10px; /* 设置内边距为上下各20像素，左右各10像素 */
+      animation: shake 0.5s;/* 當滑鼠移動到字體時應用震動動畫 */
+      }
+      .navbar-nav .nav-link:hover {
+      color: #85117b!important; /* 滑鼠滑到後4個字體的顏色 */
+    }
+    p {
+      font-size: 20px;
+    }
+    .navbar-light.bg-light {
+       background-color: rgba(6, 81, 131, 0.993) !important;/* 工具列的背景顏色  */
+       box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5)!important;
+      }
+      .navbar-brand {
+      font-size: 45px; /* 設置字體大小為30像素 */
+      color:rgb(145, 144, 144) !important; /* 設置字體顏色為深黃色 */
+      }
+      .navbar-nav .nav-link {
+      color: #ccb115 !important; /* 原本4個小標題的顏色 */
+    }
+    
+    .navbar {
+      max-width: 1850px; /* 設置工具列的最大寬度為1200像素 */
+      margin: 0 auto; /* 設置工具列水平居中 */
+    }
+    .credit {
+      color: rgb(2, 45, 48); /* 更改顏色為紅色 */
+      font-size: 40px; /* 更改字體大小為32px */
+      font-weight: normal;
+    }
+    .footer {
+      background-color: #3275c2;
+      text-align: center;
+      height: 125px;
+    }
+    .footer .social{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+    #scroll-up{
+    /* 按鈕的位置是固定的 */
+    position: fixed;
+    /* 初始狀態下，按鈕位於頁面的上方，隱藏起來 */
+    top: -120%;
+    /* 按鈕位於頁面的右下角 */
+    right: 20px;
+    /* 按鈕的內邊距 */
+    padding: 10px;
+    /* 按鈕的字體大小 */
+    font-size: 25px;
+    /* 按鈕的背景顏色 */
+    background: #ccb115;
+    /* 按鈕的文字顏色 */
+    color: #ffffff;
+    /* 按鈕的邊框半徑 */
+    border-radius: 10%;
+    /* 按鈕的透明度 */
+    opacity: 0.8;
+    /* 按鈕滑動的過渡效果 */
+    transition: 1s linear;
+}
+
+/* 當按鈕被激活時，顯示出來 */
+#scroll-up.active{
+    /* 按鈕從頁面底部滑動到距離頁面頂部80%的位置 */
+    top: 80%;
+}
+
+
+.container {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+
+        .map {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #star {
+            position: absolute;
+            top:58%;
+            left:60.5%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            color: rgb(255, 238, 0);
+            font-size: 30px !important;
+        }
+
+        @media screen and (min-width: 600px) {
+            #star {
+                font-size: 100px!important;
+            }
+        }
+        .location {
+            color: rgb(22, 223, 223);
+            font-size: 50px;
+            text-align: center !important;
+        }
+        
+  </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="01.html">麗寶OUTLET MALL</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="02.html">購物</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="03.html">飲食</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="04.html">遊玩</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="05.html">電影</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <p></p>
+      <div class="container">
+        <br>
+        <div class="container-fluid">
+          <div class="row">
+            <div style="text-align: center;">
+              <img src="https://drive.google.com/uc?export=view&id=1eXBHQGoOgjsSiSFyeFY_YuLCe0iePP8f" alt="QUIKSILVER & ROXY" style="width: 100%; height: auto;">
+              <p></p>
+             <img src="https://drive.google.com/uc?export=view&id=1eoK3u9cpGWwGNvo-wWphOu7ex_eBrC4T" alt="QUIKSILVER & ROXY2"style="width: 30%; height: auto; position: relative; top: -80px; left: 0px; box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.3);">
+            </div>
+            </div>
+          </div>
+          <br>
+          <p></p>
+          <div style="display: flex; align-items: center;">
+            <div style="width: 250px; height: 5px; background-color:rgb(223, 143, 22);"></div>
+            <div style="margin-left: 20px;">
+              <p style="font-size: 30px; color: rgb(223, 143, 22);">品牌介紹</p>
+              <p style="font-size: 25px; color: rgb(223, 143, 22);">brand introduction</p>
+            </div>
+            <div style="margin-left: 20px; width: 300px; height: 5px; background-color: rgb(223, 143, 22);"></div>
+          </div>
+          <p style="font-size: 35px; color: rgb(2, 0, 128);">QUIKSILVER & ROXY</p>
+          <br>
+        <li>DC SHOES</li>
+        <br>
+        <p>1994年，由DAMON WAY和KEN BLOCK兩人在美國共同創立，兩人不僅大學同學也同樣喜愛滑板運動，因而想創辦專業滑板裝備品牌。一開始將品牌命名為EIGHT BALL，接著更名為DROORS，DC其實就是DROORS CLOTHING的縮寫，最終品牌定名為DC SHOES。</p>
+          <p>DC shoes已是最受全球滑板運動玩家推崇的品牌，並隸屬於Quiksilver 集團旗下，產品線包含所有男性、女性與青少年兒童的各類服飾配件、鞋類、專業滑板裝備與專業滑雪裝備。 同時DC shoes 也贊助許多世界級極限運動運動員與運動賽事，包含滑板運動、滑雪競賽與摩托車越野賽，致力將極限賽事中「顛覆傳統、大膽創新」的精神推廣給全球消費者。</p>
+        <br>
+        <li>QUIKSILVER</li>
+        <br>
+        <p>QUIKSILVER 源自澳洲，是世界級極限運動與戶外運動品牌集團，旗下有多個知名運動品牌，包含ROXY與DCSHOES。自1969年創立後，致力於製作出最佳衝浪裝備 、 雪地裝備、各式服裝與配件。</p>
+        <p>Quiksilver 象徵自然率性、勇敢挑戰、熱情冒險的精神！這份精神也透過所有產品與贊助頂尖運動員呈現。 Quiksilver 秉持挑戰極限的態度，不斷推出創新產品。我們的最新服裝 與運動裝備，均與專業衝浪手與滑雪選手一同研發，以求符合極限運動需求。無論你熱愛挑戰各式水上或陸上極限活動，或喜歡在沙灘上徜徉一天，或習慣用滑板四處遨遊，Quiksilver 都可滿足你的需求。 </p>
+         <p>了解更多我們最新衝浪褲、 防寒衣、 T 恤、夾腳拖、帽子與專業滑雪服飾，你會發現每件Quiksilver 產品都以最舒適耐用材料，強化運動表現，幫助你實現夢想。不管上山下海，Quiksilver 永遠和你一起自由冒險，挑戰極限 !</p>  
+        <br>
+        <li>ROXY</li>
+        <br>
+        <p>源自澳洲的全方位女性泳裝、衝浪、滑雪、各式運動與時尚服飾配件專家。</p>
+        <p>ROXY 品牌設計靈感來自高山與海洋，1990 年受到女子衝浪世界冠軍Lisa Andersen的啟發，替衝浪女孩們設計出第一件海灘褲 。</p>
+        <p>我們仍持續不斷以創新產品，幫助女性面對生命中的挑戰，完成獨一無二的夢想。每件產品均以鼓舞女性勇於展現自我、點燃生命熱情為出發點，致力設計出多功能服飾與運動配件。我們也期待每一位穿著ROXY的女性，都能感受到勇敢追夢的冒險精神，如同我們長期贊助的女子運動選手們，如Stephanie Gilmore與Torah Bright等 ，持續讓生命發光發熱。</p>
+        <br>
+        <p>ROXY 是世界第一女性衝浪品牌。為所有女性、女孩與兒童提供最合適的時尚裝備。</p> 
+        <p>從泳裝系列開始， ROXY 獨家提供每位女性最全方位戶外運動裝備，如: 防寒衣、防磨衣、滑雪外套、滑雪長褲、雪地配件、海灘服裝、 衝浪服飾、一件式泳裝、 經典泳裝、 比基尼、 高衩泳裝、 海灘褲 與各式女性運動服裝</p>
+        <p>包含瑜珈 、 慢跑、海邊活動專屬服裝與 各式海灘服飾配件、 洋裝、針織衫、 毛衣、 T恤服飾、鞋子、 靴子、 涼鞋、拖鞋、夾腳拖或人字拖、 短褲、 legging、 上衣、 包包 與各式各樣讓女孩愛不釋手的配件。快加入美好的ROXY 世界，一起發掘專屬於你，與眾不同的自信風格吧!</p>
+        <br>
+        <br>
+        <div style="display: flex; align-items: center;">
+          <div style="width: 300px; height: 5px; background-color:rgb(223, 143, 22);"></div>
+          <div style="margin-left: 20px;">
+            <p style="font-size: 30px; color: rgb(223, 143, 22);">專櫃位置</p>
+            <p style="font-size: 25px; color: rgb(223, 143, 22);">Counter Location</p>
+          </div>
+          <div style="margin-left: 20px; width: 550px; height: 5px; background-color: rgb(223, 143, 22);"></div>
+        </div>
+        <p></p>
+        <span class="location">1F / B區 / 1208</span>
+      <p></p>
+      </div>
+      <div class="container">
+        <img src="https://drive.google.com/uc?export=view&id=16ouXLmHqysOayx6QElj0fybd4qao4x1A" alt="地圖" class="map">
+        <i class="fas fa-star" id="star"></i>
+    </div>
+    <br>
+    <p></p>
+      <section class="footer" id="footer">
+        <div class="social">
+          <a href="https://www.facebook.com/profile.php?id=100013497074976"><i class="fab fa-facebook-square"
+                  style="color: rgb(24, 24, 209);font-size: 40px;"></i></a>
+          <a href="https://instagram.com/ye_wei_1128?igshid=MjEwN2IyYWYwYw==/"><i class="fab fa-instagram-square"
+                  style="color: rgb(212, 65, 193);font-size: 40px;"></i></a>
+          <a href="https://line.me/ti/p/6lH8yAFbAB"><i class="fab fa-line"
+                  style="color: rgb(55, 194, 37);font-size: 40px;"></i></a>
+          <a href="#" class="fas fa-angle-up" id="scroll-up"></a>
+      </div>
+        <p></p>
+        <h1 class="credit">我家附近有麗寶OUTLET</h1>
+    </section>
+</body>
+</html>
+

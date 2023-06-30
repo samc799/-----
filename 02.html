@@ -1,0 +1,843 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>購物</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    </script>
+    <script type="text/javascript">window.onscroll = function () {
+            var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+            var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+            if (scrollPos > clientHeight / 2) {
+                document.getElementById("scroll-up").classList.add("active");
+            } else {
+                document.getElementById("scroll-up").classList.remove("active");
+            }
+        }
+
+        // 當回到頂部按鈕被點擊時，滑動到頁面頂部
+        document.getElementById("scroll-up").onclick = function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }</script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchForm = document.getElementById("search-form");
+            searchForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // 防止表單提交刷新頁面
+                var keyword = document.getElementById('search-input').value.trim(); // 獲取輸入的關鍵字
+                var gallery = document.querySelectorAll(".gallery div");
+
+                // 找到與關鍵字相符的第一個 div 元素
+                var matchingItem = null;
+                for (var i = 0; i < gallery.length; i++) {
+                    var item = gallery[i];
+                    var h3 = item.querySelector("h3");
+                    if (h3.textContent.trim() === keyword) {
+                        matchingItem = item;
+                        break;
+                    }
+                }
+                if (matchingItem !== null) {
+                    // 檢查找到相符的 div 元素
+
+                    // 將相符的 div 元素與第一個 div 元素交換位置
+                    var firstItem = gallery[0];
+                    var parent = firstItem.parentNode;
+
+                    // 创建一个临时元素
+                    var temp = document.createElement('div');
+
+                    // 将相符的元素插入到临时元素的前面
+                    parent.insertBefore(temp, firstItem);
+
+                    // 将第一个元素插入到相符元素的前面
+                    parent.insertBefore(firstItem, matchingItem);
+
+                    // 将临时元素插入到第一个元素的前面，完成交换
+                    parent.insertBefore(matchingItem, temp);
+
+                    // 移除临时元素
+                    parent.removeChild(temp);
+
+                    //隱藏
+                    hideItems();
+                }
+            });
+        });
+        function hideItems() {
+            var gallery = document.querySelectorAll(".gallery div");
+            for (var i = 1; i < gallery.length; i++) {
+                gallery[i].style.display = "none";
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            /* 设置外边距为0 */
+            padding: 0;
+            /* 设置内边距为0 */
+            box-sizing: border-box;
+            /* 设置盒模型为border-box */
+            text-decoration: none;
+            /* 去除文本装饰 */
+            transition: 0.4s all linear;
+            /* 设置过渡效果 */
+            font-size: 25px;
+            /* 设置字体大小为30像素 */
+        }
+
+        .carousel-item img {
+            height: 100%;
+            /* 設置圖片的高度為100% */
+            object-fit: cover;
+            /* 設置圖片的填充方式為cover */
+            display: block;
+            /* 設置圖片為block元素 */
+            margin: 0 auto;
+            /* 設置圖片的水平居中 */
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            /* 起始位置，不進行位移 */
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-2px);
+            }
+
+            /* 在 10%, 30%, 50%, 70%, 90% 的時間點，向左移動 5 像素 */
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(2px);
+            }
+
+            /* 在 20%, 40%, 60%, 80% 的時間點，向右移動 5 像素 */
+            100% {
+                transform: translateX(0);
+            }
+
+            /* 結束位置，回到原始位置 */
+        }
+
+        .nav-link:hover {
+            font-size: 25px;
+            /* 设置字体大小为22像素 */
+            font-weight: 500;
+            /* 设置字体粗细为500 */
+            margin-left: 10px;
+            /* 设置左侧外边距为10像素 */
+            transition: 1s;
+            /* 设置过渡效果持续时间为1秒 */
+            background-color: rgb(50, 168, 223);
+            /* 设置背景颜色为深红色 */
+            padding: 15px 10px 15px 10px;
+            /* 设置内边距为上下各20像素，左右各10像素 */
+            animation: shake 0.5s;
+            /* 當滑鼠移動到字體時應用震動動畫 */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #85117b !important;
+            /* 滑鼠滑到後4個字體的顏色 */
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        .navbar-light.bg-light {
+            background-color: rgba(6, 81, 131, 0.993) !important;
+            /* 工具列的背景顏色  */
+            box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .navbar-brand {
+            font-size: 45px;
+            /* 設置字體大小為30像素 */
+            color: rgb(145, 144, 144) !important;
+            /* 設置字體顏色為深黃色 */
+        }
+
+        .navbar-nav .nav-link {
+            color: #ccb115 !important;
+            /* 原本4個小標題的顏色 */
+        }
+
+        .navbar {
+            max-width: 1850px;
+            /* 設置工具列的最大寬度為1200像素 */
+            margin: 0 auto;
+            /* 設置工具列水平居中 */
+        }
+
+        .credit {
+            color: rgb(2, 45, 48);
+            /* 更改顏色為紅色 */
+            font-size: 40px;
+            /* 更改字體大小為32px */
+            font-weight: normal;
+        }
+
+        .footer {
+            background-color: #3275c2;
+            text-align: center;
+            height: 125px;
+        }
+
+        .footer .social {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #scroll-up {
+            /* 按鈕的位置是固定的 */
+            position: fixed;
+            /* 初始狀態下，按鈕位於頁面的上方，隱藏起來 */
+            top: -120%;
+            /* 按鈕位於頁面的右下角 */
+            right: 20px;
+            /* 按鈕的內邊距 */
+            padding: 10px;
+            /* 按鈕的字體大小 */
+            font-size: 25px;
+            /* 按鈕的背景顏色 */
+            background: #ccb115;
+            /* 按鈕的文字顏色 */
+            color: #ffffff;
+            /* 按鈕的邊框半徑 */
+            border-radius: 10%;
+            /* 按鈕的透明度 */
+            opacity: 0.8;
+            /* 按鈕滑動的過渡效果 */
+            transition: 1s linear;
+        }
+
+        /* 當按鈕被激活時，顯示出來 */
+        #scroll-up.active {
+            /* 按鈕從頁面底部滑動到距離頁面頂部80%的位置 */
+            top: 80%;
+        }
+
+
+        @media screen and (min-width: 768px) {
+            #star {
+                font-size: 80px;
+            }
+        }
+
+        .location {
+            color: rgb(22, 223, 223);
+            font-size: 50px;
+            text-align: center !important;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0 50px;
+            /* 設置左右外邊距為50像素 */
+        }
+
+        @media (min-width: 600px) {
+            .gallery {
+                margin: 0 auto;
+                /* 在螢幕寬度大於600像素時，將外邊距設置為自動居中 */
+                max-width: 1000px;
+                /* 設置最大寬度為1200像素 */
+            }
+            #search-input {
+                width: 200px;
+  }
+        }
+
+        .item {
+            margin: 10px;
+            padding: 10px;
+            background: linear-gradient(320deg, #ddc7a1, #a3a3ec, #4682b4);
+            text-align: center;
+            width: 200px;
+            height: 220px;
+        }
+
+        .item img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .item h3 {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .gallery a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .search {
+            border: 10px solid #ffffff;
+            /* 設置邊框寬度和顏色 */
+            background: linear-gradient(320deg, #d49426, #4c4c96, #0a66b1);
+            /* 設置背景顏色 */
+            padding: 15px;
+            /* 設置內邊距 */
+            width: 1580px;
+            /* 設置寬度 */
+            text-align: center;
+            margin: 0 auto;
+            /* 將元素水平置中 */
+            border-radius: 35px;
+            /* 設置四個角的圓弧半徑 */
+        }
+
+        .gallery .item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgb(35, 4, 77);
+        }
+
+        .gallery .item {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+ /* 在螢幕寬度小於等於768px時，修改搜尋框的樣式 */
+@media (max-width: 768px) {
+  /* 將搜尋框的寬度設為100% */
+  .search {
+    width: 100%;
+  }
+  /* 將搜尋框的寬度設為80%，並在右側留出10px的間距 */
+  #search-input {
+    width: 30%;
+    margin-right: 10px;
+  }
+  /* 將搜尋按鈕的寬度設為15% */
+  button[type="submit"] {
+    width: 15%;
+  }
+}
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="01.html">麗寶OUTLET MALL</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="02.html">購物</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="03.html">飲食</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="04.html">遊玩</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="05.html">電影</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <br>
+
+    <div class="search">
+        <form id="search-form">
+            <input type="text" placeholder="輸入關鍵字" id="search-input" style="width: 80%;">
+            <button type="submit">搜尋</button>
+        </form>
+    </div>
+
+    <div class="gallery">
+        <div class="item">
+            <a href="PLAY BOY.html">
+                <img src="https://drive.google.com/uc?export=view&id=1rSPcRPRzXCBgkXOEDt-SH5ne5XXaYvtm" alt="PLAY BOY" style="width: 150px; height: 150px;">
+                <h3>PLAY BOY</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Silvian Heach.html">
+                <img src="https://drive.google.com/uc?export=view&id=13ysR4q61ElZCpy83Af-jMuVtTEJsvexe" alt="Silvian Heach" style="width: 150px; height: 150px;">
+                <h3>Silvian Heach</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="GUESS.html">
+                <img src="https://drive.google.com/uc?export=view&id=1MG0ICnehfEMQIqdsuCPLs7gnmp7QxET_" alt="GUESS" style="width: 150px; height: 150px;">
+                <h3>GUESS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="ROOTS.html">
+                <img src="https://drive.google.com/uc?export=view&id=1wGEbt7ySr0hTMmAQQ7bHFZ3GLhp4p0qH" alt="ROOTS" style="width: 150px; height: 150px;">
+                <h3>ROOTS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Arnold Palmer.html">
+                <img src="https://drive.google.com/uc?export=view&id=12L9qM1jqjCEHdbb7acbzqLswmphgGmMG" alt="Arnold Palmer" style="width: 150px; height: 150px;">
+                <h3>Arnold Palmer</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="LEE.html">
+                <img src="https://drive.google.com/uc?export=view&id=17jdigqzmZsXz1uPP1VGzDOZmi5_3Rk45" alt="LEE" style="width: 150px; height: 150px;">
+                <h3>LEE</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="CUMAR.html">
+                <img src="https://drive.google.com/uc?export=view&id=1U8EFumq5dvfiwEryd7BIRPzm15zkpqKI" alt="CUMAR" style="width: 150px; height: 150px;">
+                <h3>CUMAR</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Ivy house.html">
+                <img src="https://drive.google.com/uc?export=view&id=1NtEpyYXwSCOLX0Buuh_726TyEib1NnpU" alt="Ivy house" style="width: 150px; height: 150px;">
+                <h3>Ivy house</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Jack Nicklaus.html">
+                <img src="https://drive.google.com/uc?export=view&id=1rnJAyICFAqwh2vBCFLwI00Oom0iRPfKS" alt="Jack Nicklaus" style="width: 150px; height: 150px;">
+                <h3>Jack Nicklaus</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="FFFF.html">
+                <img src="https://drive.google.com/uc?export=view&id=1J7rVlC0_yfcrMbFFWi0Du-zFs1PV2sq0" alt="FFFF" style="width: 150px; height: 150px;">
+                <h3>FFFF</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="NTG STORE.html">
+                <img src="https://drive.google.com/uc?export=view&id=1gu8quimPmRSMH8xa6cWkrhUwT9_JBVVb" alt="NTG STORE" style="width: 150px; height: 150px;">
+                <h3>NTG STORE</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="AIR SPACE.html">
+                <img src="https://drive.google.com/uc?export=view&id=15XybOQyc2H-fXOrLYisXrStjuQ9WgJOb" alt="AIR SPACE" style="width: 150px; height: 150px;">
+                <h3>AIR SPACE</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="CACO.html">
+                <img src="https://drive.google.com/uc?export=view&id=1Ayf36Mp0VI82TQhoD064eKdQz9fyvmuw" alt="CACO" style="width: 150px; height: 150px;">
+                <h3>CACO</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Nab_Shop.html">
+                <img src="https://drive.google.com/uc?export=view&id=13uzq877J9ozGWuvBWprWnYzJnlWj7GYw" alt="Nab_Shop" style="width: 150px; height: 150px;">
+                <h3>Nab_Shop</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Ivys_MOORIS.html">
+                <img src="https://drive.google.com/uc?export=view&id=18tyKmre4fxPUCZmvoKq76RmVn2ORdI6y" alt="Ivys_MOORIS" style="width: 150px; height: 150px;">
+                <h3>Ivys_MOORIS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="06.html">
+                <img src="https://drive.google.com/uc?export=view&id=1CfWwtjhNZ8072s1Uf0hxFelHOhsK7lwF" alt="PULO 布蘿國民襪館" style="width: 150px; height: 150px;">
+                <h3>PULO 布蘿國民襪館</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="KANGOL.html">
+                <img src="https://drive.google.com/uc?export=view&id=14OsIJjG-dCKlXH_uGHem7ki1OuTAsIIb" alt="KANGOL" style="width: 150px; height: 150px;">
+                <h3>KANGOL</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="07.html">
+                <img src="https://drive.google.com/uc?export=view&id=1AMp3lFX67h4rkmbwe133qroY4FiNSUrk" alt="C.O.T.E男士內著" style="width: 150px; height: 150px;">
+                <h3>C.O.T.E男士內著</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="POU DOU DOU.html">
+                <img src="https://drive.google.com/uc?export=view&id=10R9lB-8wjsRrSvLbko7fhMERYfXbP_19" alt="POU DOU DOU" style="width: 150px; height: 150px;">
+                <h3>POU DOU DOU</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Cantwo.html">
+                <img src="https://drive.google.com/uc?export=view&id=19lsrJR5bJngU_U2S_gfWUTH3LwzeKDiM" alt="Cantwo" style="width: 150px; height: 150px;">
+                <h3>Cantwo</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="LEVI'S.html">
+                <img src="https://drive.google.com/uc?export=view&id=19bhcJeDJNtEEUqVH6mN-TwSQRiR76kx7" alt="LEVI'S" style="width: 150px; height: 150px;">
+                <h3>LEVI'S</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="ONLY.html">
+                <img src="https://drive.google.com/uc?export=view&id=1rq8ll6IJiLYPhs-7JyZ7Ssz-fK4bjGNX" alt="ONLY" style="width: 150px; height: 150px;">
+                <h3>ONLY</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Jack & Jones.html">
+                <img src="https://drive.google.com/uc?export=view&id=1il7hM3qFZTGjUwbkQ1y03Cp7n-l5ub-q" alt="Jack & Jones" style="width: 150px; height: 150px;">
+                <h3>Jack & Jones</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="EDWIN.html">
+                <img src="https://drive.google.com/uc?export=view&id=13coTGgKO4lVaRWwshlu0JC7un-VFqqVR" alt="EDWIN" style="width: 150px; height: 150px;">
+                <h3>EDWIN</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="BLUE WAY.html">
+                <img src="https://drive.google.com/uc?export=view&id=1zJ4WwVFanuGc_yHZDXQHpC7X3cTwaXrN" alt="BLUE WAY" style="width: 150px; height: 150px;">
+                <h3>BLUE WAY</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Wacoal.html">
+                <img src="https://drive.google.com/uc?export=view&id=1jfWUoZjjwA43ApC4JZvM_MEIs6TnYk90" alt="Wacoal" style="width: 150px; height: 150px;">
+                <h3>Wacoal</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="KnightsBridge.html">
+                <img src="https://drive.google.com/uc?export=view&id=1Vp1jznz9oxaoy_RbWuktZtK27mrwdXPE" alt="KnightsBridge" style="width: 150px; height: 150px;">
+                <h3>KnightsBridge</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="MASTINA.html">
+                <img src="https://drive.google.com/uc?export=view&id=19sQDZqcQCreYrVZ8mYATaahFGb6paf2x" alt="MASTINA" style="width: 150px; height: 150px;">
+                <h3>MASTINA</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Triumph.html">
+                <img src="https://drive.google.com/uc?export=view&id=1Qfjh2xl-i75KdWQZZll5-5NncMyXvGwp" alt="Triumph" style="width: 150px; height: 150px;">
+                <h3>Triumph</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Cath kidston.html">
+                <img src="https://drive.google.com/uc?export=view&id=1ouy3Q8vho_wx2eS9pfsccCYukxeXkcuZ" alt="Cath kidston" style="width: 150px; height: 150px;">
+                <h3>Cath kidston</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="BRAPPERS.html">
+                <img src="https://drive.google.com/uc?export=view&id=1fHFzO_WgsJ5lmTklQKExRwXrV3P0qgry" alt="BRAPPERS" style="width: 150px; height: 150px;">
+                <h3>BRAPPERS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="crocodile.html">
+                <img src="https://drive.google.com/uc?export=view&id=1VIsTMyWoSiV80mpVYojlzQktllmwE9wU" alt="crocodile" style="width: 150px; height: 150px;">
+                <h3>crocodile</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="SST&C.html">
+                <img src="https://drive.google.com/uc?export=view&id=16NS42M4Tk2RaDYgbKXWCV598VARwfrSS" alt="SST&C" style="width: 150px; height: 150px;">
+                <h3>SST&C</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="le coq sportif.html">
+                <img src="https://drive.google.com/uc?export=view&id=1-Rqz0UWPN-2xgYKg9Nzi1_difcpCOkft" alt="le coq sportif" style="width: 150px; height: 150px;">
+                <h3>le coq sportif</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="GOGO SPORTS.html">
+                <img src="https://drive.google.com/uc?export=view&id=126Ffout0bgGPWWqm9aJ0xGSDhNeYzl-X" alt="GOGO SPORTS" style="width: 150px; height: 150px;">
+                <h3>GOGO SPORTS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="HAZZYS.html">
+                <img src="https://drive.google.com/uc?export=view&id=10FEkWhtp6xu_2fO50UsZPCVBa_XZJU3Z" alt="HAZZYS" style="width: 150px; height: 150px;">
+                <h3>HAZZYS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Roberto cavalli.html">
+                <img src="https://drive.google.com/uc?export=view&id=1E1dhk1mz4S6bWSp4fMfMZ4-e0zA7IK8N" alt="Roberto cavalli" style="width: 150px; height: 150px;">
+                <h3>Roberto cavalli</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="JOTT.html">
+                <img src="https://drive.google.com/uc?export=view&id=1nwpcEqXRgHflCrPPLzW4-c1cKOkRK3cK" alt="JOTT" style="width: 150px; height: 150px;">
+                <h3>JOTT</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Chantelle.html">
+                <img src="https://drive.google.com/uc?export=view&id=1XWZYPD51V6Vt9wvM8DsaW5FPVJqu2HdA" alt="Chantelle" style="width: 150px; height: 150px;">
+                <h3>Chantelle</h3>
+            </a>
+        </div>
+     
+        <div class="item">
+            <a href="BOBSON.html">
+                <img src="https://drive.google.com/uc?export=view&id=1GbphTG354aPQY6Ul5xAkMKLzbMs6briZ" alt="BOBSON" style="width: 150px; height: 150px;">
+                <h3>BOBSON</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Life8.html">
+                <img src="https://drive.google.com/uc?export=view&id=1V5abuWzGJoGn_Me_--plpxU--OHzjgyp" alt="Life8" style="width: 150px; height: 150px;">
+                <h3>Life8</h3>
+            </a>
+        </div>
+        
+        <div class="item">
+            <a href="08.html">
+                <img src="https://drive.google.com/uc?export=view&id=1igk2bszOdxPSajCUjKYbr1Zk6_o9mtJN" alt="曼黛瑪璉" style="width: 150px; height: 150px;">
+                <h3>曼黛瑪璉</h3>
+            </a>
+        </div>
+       
+        <div class="item">
+            <a href="GAP.html">
+                <img src="https://drive.google.com/uc?export=view&id=1FjnSBTXBIh16LLMMTpctbYMP3DKKDvb3" alt="GAP" style="width: 150px; height: 150px;">
+                <h3>GAP</h3>
+            </a>
+        </div>
+        
+        <div class="item">
+            <a href="CLAID JEANS.html">
+                <img src="https://drive.google.com/uc?export=view&id=1DmUR-IxzyANWf-BGp3LoqhubRNrfTPeq" alt="CLAID JEANS" style="width: 150px; height: 150px;">
+                <h3>CLAID JEANS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="TANI.html">
+                <img src="https://drive.google.com/uc?export=view&id=1TcsXQQ0D6XYOcasQ6s9B1Ao2qx9_0iM3" alt="TANI" style="width: 150px; height: 150px;">
+                <h3>TANI</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="CALIFORNIA REPUBLIC.html">
+                <img src="https://drive.google.com/uc?export=view&id=1i-hhT5PJg92-OUSyRLPJ7BjP7EE-3W0E" alt="CALIFORNIA REPUBLIC" style="width: 150px; height: 150px;">
+                <h3>CALIFORNIA REPUBLIC</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="CROCS.html">
+                <img src="https://drive.google.com/uc?export=view&id=10yEat3xkIszxuMbsQC5vDlmczuEIVu7c" alt="CROCS" style="width: 150px; height: 150px;">
+                <h3>CROCS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Timberland.html">
+                <img src="https://drive.google.com/uc?export=view&id=1SkmqdocR7iCH2FNnupFXBWIwUg8TBYZc" alt="Timberland" style="width: 150px; height: 150px;">
+                <h3>Timberland</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="FM SHOES.html">
+                <img src="https://drive.google.com/uc?export=view&id=1IYbqwb4SmsJpM2m3f3NMnRy9k0Gd5Nhm" alt="FM SHOES" style="width: 150px; height: 150px;">
+                <h3>FM SHOES</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="KAPPA.html">
+                <img src="https://drive.google.com/uc?export=view&id=1ToSg5A0D93UzcLYbNJq1zVu55hVGYrCM" alt="KAPPA" style="width: 150px; height: 150px;">
+                <h3>KAPPA</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Hush puppies.html">
+                <img src="https://drive.google.com/uc?export=view&id=1wlMMmCrtJnpg5FJ2PJb-TldZvYyBpeqD" alt="Hush puppies" style="width: 150px; height: 150px;">
+                <h3>Hush puppies</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="QUIKSILVER & ROXY.html">
+                <img src="https://drive.google.com/uc?export=view&id=1eoK3u9cpGWwGNvo-wWphOu7ex_eBrC4T" alt="QUIKSILVER & ROXY" style="width: 150px; height: 150px;">
+                <h3>QUIKSILVER & ROXY</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="PUMA.html">
+                <img src="https://drive.google.com/uc?export=view&id=1ARUH_bGqzg_GYp6uCzC8C18hCiPbnlRb" alt="PUMA" style="width: 150px; height: 150px;">
+                <h3>PUMA</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="UNDER ARMOUR.html">
+                <img src="https://drive.google.com/uc?export=view&id=1KvZDRwB8kdxQ-vpKxzQFx_qxY4umqI7i" alt="UNDER ARMOUR" style="width: 150px; height: 150px;">
+                <h3>UNDER ARMOUR</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="ADIDAS.html">
+                <img src="C:\Users\a0966\Desktop\w480.jpg" alt="NEW BALANCE" style="width: 150px; height: 150px;">
+                <h3>ADIDAS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="NEW BALANCE.html">
+                <img src="https://drive.google.com/uc?export=view&id=1Equ71f_9cWnGLvGBlQ0Q5P6ONBQZAI07" alt="NEW BALANCE" style="width: 150px; height: 150px;">
+                <h3>NEW BALANCE</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="NIKE.html">
+                <img src="https://drive.google.com/uc?export=view&id=1pXUjrbYE2Abh8JgbNcDc35zg84X775Yo" alt="NIKE" style="width: 150px; height: 150px;">
+                <h3>NIKE</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="CONVERSE.html">
+                <img src="https://drive.google.com/uc?export=view&id=1958dsHCEwI9n3ED_gK2RdVoca_gYJWIX" alt="CONVERSE" style="width: 150px; height: 150px;">
+                <h3>CONVERSE</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Reebok.html">
+                <img src="https://drive.google.com/uc?export=view&id=1butVkx957KCCWKLcDJU9GGb7wD7tjNFC" alt="Reebok" style="width: 150px; height: 150px;">
+                <h3>Reebok</h3>
+            </a>
+        </div>
+     
+        <div class="item">
+            <a href="SKECHERS.html">
+                <img src="https://drive.google.com/uc?export=view&id=1n1bFBAOjbhO-ovYHn4v5Cy_jqLkEDfVj" alt="SKECHERS" style="width: 150px; height: 150px;">
+                <h3>SKECHERS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="FILA.html">
+                <img src="https://drive.google.com/uc?export=view&id=1RNZHTg5fe9zUn5x9VCumOEv2XiujLjF8" alt="FILA" style="width: 150px; height: 150px;">
+                <h3>FILA</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="WALTZ.html">
+                <img src="https://drive.google.com/uc?export=view&id=1Zh4RJMYVv2-RAylNFhfS31TUxPcKlJYG" alt="WALTZ" style="width: 150px; height: 150px;">
+                <h3>WALTZ</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="PALLADIUM.html">
+                <img src="https://drive.google.com/uc?export=view&id=1xRtd3139lHa2N0Y41V6U-pIAPndghF2_" alt="PALLADIUM" style="width: 150px; height: 150px;">
+                <h3>PALLADIUM</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Nike Swim.html">
+                <img src="https://drive.google.com/uc?export=view&id=1KlyTDYK6EhrN1WTLGTPihyyagLR6AtLQ" alt="Nike Swim" style="width: 150px; height: 150px;">
+                <h3>Nike Swim</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="ORWARE.html">
+                <img src="https://drive.google.com/uc?export=view&id=1WXrNGUvAngGERZCT3DTfrQMFa2WdFGDj" alt="ORWARE" style="width: 150px; height: 150px;">
+                <h3>ORWARE</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="BROOKS.html">
+                <img src="https://drive.google.com/uc?export=view&id=13vVbp4LO8p9N7utwQr3m68xk_JG1mFL3" alt="BROOKS" style="width: 150px; height: 150px;">
+                <h3>BROOKS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="Zepro.html">
+                <img src="https://drive.google.com/uc?export=view&id=1LKPHr6BdbQSZ0bRiNPQJDQZ-KayUgr0j" alt="Zepro" style="width: 150px; height: 150px;">
+                <h3>Zepro</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="MIZUNO.html">
+                <img src="https://drive.google.com/uc?export=view&id=1rNf5MYjlC16SOGNcil34lLQC3gil5SB6" alt="MIZUNO" style="width: 150px; height: 150px;">
+                <h3>MIZUNO</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="K-SWISS.html">
+                <img src="https://drive.google.com/uc?export=view&id=1wE5Hez0WiN46Fkuey_kQHw6RLxJguGXK" alt="K-SWISS" style="width: 150px; height: 150px;">
+                <h3>K-SWISS</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="bac.html">
+                <img src="https://drive.google.com/uc?export=view&id=1RYRvpBB7VVN69nImLjAmFitG9MurzS15" alt="bac" style="width: 150px; height: 150px;">
+                <h3>bac</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="TAS COLLECTION.html">
+                <img src="https://drive.google.com/uc?export=view&id=1cuMVp0c7WpjzZa0V6OBQSV16HEt_u4wp" alt="TAS COLLECTION" style="width: 150px; height: 150px;">
+                <h3>TAS COLLECTION</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="ABC MART.html">
+                <img src="https://drive.google.com/uc?export=view&id=13TwJBMCTESHNae2zSAecT-TtcrttU5qS" alt="ABC MART" style="width: 150px; height: 150px;">
+                <h3>ABC MART</h3>
+            </a>
+        </div>
+        <div class="item">
+            <a href="ITP mall+.html">
+                <img src="https://drive.google.com/uc?export=view&id=1TLS6zNqpwtYk07EI4b0rORN2-DQ1u-xg" alt="ITP mall+" style="width: 150px; height: 150px;">
+                <h3>ITP mall+</h3>
+            </a>
+        </div>
+    </div>
+    <section class="footer" id="footer">
+        <div class="social">
+            <a href="https://www.facebook.com/profile.php?id=100013497074976"><i class="fab fa-facebook-square"
+                    style="color: rgb(24, 24, 209);font-size: 40px;"></i></a>
+            <a href="https://instagram.com/ye_wei_1128?igshid=MjEwN2IyYWYwYw==/"><i class="fab fa-instagram-square"
+                    style="color: rgb(212, 65, 193);font-size: 40px;"></i></a>
+            <a href="https://line.me/ti/p/6lH8yAFbAB"><i class="fab fa-line"
+                    style="color: rgb(55, 194, 37);font-size: 40px;"></i></a>
+            <a href="#" class="fas fa-angle-up" id="scroll-up"></a>
+        </div>
+        <p></p>
+        <h1 class="credit">我家附近有麗寶OUTLET</h1>
+    </section>
+</body>
+
+</html>
